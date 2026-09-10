@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Tux / Penguin Modern Vector Icon -->
+  <defs>
+    <linearGradient id="tuxGrad" x1="8" y1="4" x2="40" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="beakGrad" x1="20" y1="18" x2="28" y2="24" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Penguin Body Outline -->
+  <path d="M24 4C17.37 4 13 9.37 13 16C13 19.5 14.5 23 12 28C9.5 33 10 39 12 41C14 43 18 43 20 42C21.5 43.5 23.5 44 26 44C30 44 34 42 36 39C38 36 38 31 35 27C33.5 24.5 35 20.5 35 16C35 9.37 30.63 4 24 4Z" fill="#0f172a" stroke="url(#tuxGrad)" stroke-width="2.5" stroke-linejoin="round"/>
+  <!-- Belly -->
+  <ellipse cx="24" cy="30" rx="8" ry="10" fill="#f8fafc"/>
+  <!-- Eyes -->
+  <circle cx="19" cy="15" r="2.5" fill="#f8fafc"/>
+  <circle cx="19" cy="15" r="1.2" fill="#0f172a"/>
+  <circle cx="29" cy="15" r="2.5" fill="#f8fafc"/>
+  <circle cx="29" cy="15" r="1.2" fill="#0f172a"/>
+  <!-- Beak -->
+  <path d="M20 18H28L24 23L20 18Z" fill="url(#beakGrad)"/>
+  <!-- Feet -->
+  <path d="M16 41C13 41 12 43 14 44C16 45 19 44 21 42" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M32 41C35 41 36 43 34 44C32 45 29 44 27 42" stroke="#fbbf24" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

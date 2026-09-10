@@ -1,0 +1,578 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "The Penguins Club - Linux & FOSS Community",
+  description = "A modern, community-driven gathering of Linux enthusiasts, open source builders, and hackers fostering software freedom, hackathons, meetups, and code."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#090d12" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Early Theme Detection script (prevents FOUC) -->
+    <script is:inline>
+      (function() {
+        const storedTheme = localStorage.getItem('tpc-theme');
+        if (storedTheme) {
+          document.documentElement.setAttribute('data-theme', storedTheme);
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+          // If explicitly light OS
+          document.documentElement.setAttribute('data-theme', 'light');
+        } else {
+          document.documentElement.setAttribute('data-theme', 'dark');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Ambient dot grid and gradient glows -->
+    <div class="bg-grid-overlay" aria-hidden="true"></div>
+    <div class="ambient-glow glow-1" aria-hidden="true"></div>
+    <div class="ambient-glow glow-2" aria-hidden="true"></div>
+
+    <!-- Header / Navbar -->
+    <header class="site-header">
+      <div class="header-inner container">
+        <a href="/" class="brand" aria-label="The Penguins Club Home">
+          <div class="brand-logo-wrap">
+            <svg class="brand-tux" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 4C17.37 4 13 9.37 13 16C13 19.5 14.5 23 12 28C9.5 33 10 39 12 41C14 43 18 43 20 42C21.5 43.5 23.5 44 26 44C30 44 34 42 36 39C38 36 38 31 35 27C33.5 24.5 35 20.5 35 16C35 9.37 30.63 4 24 4Z" fill="var(--bg-canvas)" stroke="currentColor" stroke-width="2.5"/>
+              <ellipse cx="24" cy="30" rx="8" ry="10" fill="currentColor" fill-opacity="0.2"/>
+              <circle cx="19" cy="15" r="2" fill="currentColor"/>
+              <circle cx="29" cy="15" r="2" fill="currentColor"/>
+              <path d="M20 18H28L24 23L20 18Z" fill="var(--accent-yellow)"/>
+              <path d="M16 41C13 41 12 43 14 44C16 45 19 44 21 42" stroke="var(--accent-yellow)" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M32 41C35 41 36 43 34 44C32 45 29 44 27 42" stroke="var(--accent-yellow)" stroke-width="2.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="brand-info">
+            <span class="brand-name">The Penguins Club</span>
+            <span class="brand-badge">Linux &amp; FOSS</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="site-nav" aria-label="Main Navigation">
+          <a href="#activities" class="nav-link">Activities</a>
+          <a href="#events" class="nav-link">
+            Upcoming Events
+            <span class="nav-count-badge">3</span>
+          </a>
+          <a href="#projects" class="nav-link">Projects</a>
+          <a href="#community" class="nav-link">Discussions</a>
+          <a href="#manifesto" class="nav-link">Philosophy</a>
+        </nav>
+
+        <!-- Right action icons -->
+        <div class="nav-actions">
+          <div class="status-pill" title="Community Status: Active">
+            <span class="pulse-dot"></span>
+            <span class="status-text">v6.12-lts</span>
+          </div>
+
+          <!-- Theme toggle button -->
+          <button id="theme-toggle" class="icon-button" aria-label="Toggle dark/light mode" title="Toggle Theme">
+            <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- GitHub link -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="icon-button" aria-label="TPC GitHub Organization" title="GitHub Repository">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </a>
+
+          <!-- Mobile Hamburger Menu Button -->
+          <button id="mobile-nav-toggle" class="mobile-toggle icon-button" aria-label="Toggle navigation menu">
+            <svg class="menu-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <svg class="close-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile dropdown panel -->
+      <div id="mobile-menu" class="mobile-menu">
+        <div class="container">
+          <a href="#activities" class="mobile-nav-link">Activities</a>
+          <a href="#events" class="mobile-nav-link">Upcoming Events</a>
+          <a href="#projects" class="mobile-nav-link">Fostered Projects</a>
+          <a href="#community" class="mobile-nav-link">Discussions &amp; Chat</a>
+          <a href="#manifesto" class="mobile-nav-link">Philosophy</a>
+          <div class="mobile-menu-footer">
+            <a href="#events" class="btn-primary" style="width:100%;">View Upcoming Events</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Slot -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Minimal Modern FOSS Footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="footer-logo">
+              <span class="footer-tux-text">🐧 The Penguins Club</span>
+            </div>
+            <p class="footer-motto">
+              Championing Linux, digital sovereignty, and Free/Libre Open Source Software for developers, tinkerers, and creators worldwide.
+            </p>
+            <div class="footer-four-freedoms">
+              <code>freedom_level = [0, 1, 2, 3]; // run, study, share, improve</code>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Activities</h4>
+            <ul class="footer-links">
+              <li><a href="#activities">Linux Awareness</a></li>
+              <li><a href="#activities">Community Meetups</a></li>
+              <li><a href="#activities">Open Hackathons</a></li>
+              <li><a href="#projects">Project Incubation</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Discussions</h4>
+            <ul class="footer-links">
+              <li><a href="https://matrix.org" target="_blank" rel="noopener">#tpc:matrix.org</a></li>
+              <li><a href="https://discord.com" target="_blank" rel="noopener">Discord Guild</a></li>
+              <li><a href="#community">Discourse Forum</a></li>
+              <li><a href="#community">IRC: #thepenguinsclub</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <h4 class="footer-col-title">Resources</h4>
+            <ul class="footer-links">
+              <li><a href="#events">Events Calendar (.ics)</a></li>
+              <li><a href="#manifesto">The FOSS Manifesto</a></li>
+              <li><a href="https://github.com" target="_blank" rel="noopener">GitHub Repositories</a></li>
+              <li><a href="#code-of-conduct">Code of Conduct</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div class="footer-copy">
+            <span>&copy; {new Date().getFullYear()} The Penguins Club. Built with </span>
+            <a href="https://astro.build" target="_blank" rel="noopener" class="footer-astro-link">Astro</a>
+            <span> under Copyleft &amp; MIT License.</span>
+          </div>
+          <div class="footer-stats">
+            <span class="mono-dim">Zero trackers. 100% Client Freedom.</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Client-side script for Theme Toggle & Mobile Menu -->
+    <script>
+      // Theme toggling
+      const themeToggle = document.getElementById('theme-toggle');
+      if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+          const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+          const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', nextTheme);
+          localStorage.setItem('tpc-theme', nextTheme);
+        });
+      }
+
+      // Mobile Menu toggling
+      const mobileNavToggle = document.getElementById('mobile-nav-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = mobileNavToggle?.querySelector('.menu-icon') as HTMLElement | null;
+      const closeIcon = mobileNavToggle?.querySelector('.close-icon') as HTMLElement | null;
+
+      if (mobileNavToggle && mobileMenu) {
+        mobileNavToggle.addEventListener('click', () => {
+          const isOpen = mobileMenu.classList.toggle('is-open');
+          if (menuIcon && closeIcon) {
+            menuIcon.style.display = isOpen ? 'none' : 'block';
+            closeIcon.style.display = isOpen ? 'block' : 'none';
+          }
+        });
+
+        // Close menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.remove('is-open');
+            if (menuIcon && closeIcon) {
+              menuIcon.style.display = 'block';
+              closeIcon.style.display = 'none';
+            }
+          });
+        });
+      }
+    </script>
+
+    <style>
+      /* Layout & Header Styling */
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        width: 100%;
+        background: rgba(9, 13, 18, 0.75);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border-subtle);
+        transition: background-color 0.25s ease, border-color 0.25s ease;
+      }
+
+      [data-theme="light"] .site-header {
+        background: rgba(248, 250, 252, 0.82);
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 4.25rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        user-select: none;
+      }
+
+      .brand-logo-wrap {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--badge-bg);
+        border: 1px solid var(--border-glow);
+        border-radius: var(--radius-md);
+        color: var(--text-accent);
+      }
+
+      .brand-tux {
+        width: 24px;
+        height: 24px;
+      }
+
+      .brand-info {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .brand-name {
+        font-weight: 700;
+        font-size: 1.05rem;
+        letter-spacing: -0.02em;
+        color: var(--text-primary);
+        line-height: 1.2;
+      }
+
+      .brand-badge {
+        font-family: var(--font-mono);
+        font-size: 0.7rem;
+        color: var(--text-accent-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .site-nav {
+        display: none;
+        align-items: center;
+        gap: 1.75rem;
+      }
+
+      @media (min-width: 860px) {
+        .site-nav {
+          display: flex;
+        }
+      }
+
+      .nav-link {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: color 0.15s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--text-accent);
+      }
+
+      .nav-count-badge {
+        font-family: var(--font-mono);
+        font-size: 0.6875rem;
+        font-weight: 600;
+        color: #ffffff;
+        background: var(--accent-cyan);
+        padding: 0.1rem 0.4rem;
+        border-radius: 9999px;
+      }
+
+      [data-theme="light"] .nav-count-badge {
+        background: #0284c7;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+
+      .status-pill {
+        display: none;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--bg-subtle);
+        border: 1px solid var(--border-subtle);
+        padding: 0.35rem 0.75rem;
+        border-radius: 9999px;
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+      }
+
+      @media (min-width: 680px) {
+        .status-pill {
+          display: flex;
+        }
+      }
+
+      .icon-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border-card);
+        background: var(--bg-card);
+        color: var(--text-secondary);
+        transition: all 0.15s ease;
+      }
+
+      .icon-button:hover {
+        color: var(--text-accent);
+        border-color: var(--border-glow);
+        background: var(--bg-elevated);
+      }
+
+      /* Theme icon toggling */
+      :root[data-theme="dark"] .sun-icon {
+        display: block;
+      }
+      :root[data-theme="dark"] .moon-icon {
+        display: none;
+      }
+      :root[data-theme="light"] .sun-icon {
+        display: none;
+      }
+      :root[data-theme="light"] .moon-icon {
+        display: block;
+      }
+
+      .mobile-toggle {
+        display: flex;
+      }
+
+      @media (min-width: 860px) {
+        .mobile-toggle {
+          display: none;
+        }
+      }
+
+      /* Mobile Menu */
+      .mobile-menu {
+        display: none;
+        background: var(--bg-canvas);
+        border-bottom: 1px solid var(--border-card);
+        padding: 1.25rem 0 1.75rem;
+      }
+
+      .mobile-menu.is-open {
+        display: block;
+      }
+
+      .mobile-nav-link {
+        display: block;
+        padding: 0.75rem 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-subtle);
+      }
+
+      .mobile-menu-footer {
+        margin-top: 1.25rem;
+      }
+
+      /* Footer */
+      .site-footer {
+        border-top: 1px solid var(--border-subtle);
+        background: var(--bg-subtle);
+        padding-top: 4.5rem;
+        padding-bottom: 3rem;
+        margin-top: 6rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        margin-bottom: 3.5rem;
+      }
+
+      @media (min-width: 768px) {
+        .footer-grid {
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+        }
+      }
+
+      .footer-brand {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .footer-logo {
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--text-primary);
+      }
+
+      .footer-motto {
+        color: var(--text-secondary);
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        max-width: 340px;
+      }
+
+      .footer-four-freedoms {
+        font-size: 0.75rem;
+        color: var(--text-accent-secondary);
+        background: var(--badge-bg);
+        border: 1px dashed var(--badge-border);
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--radius-sm);
+        display: inline-block;
+      }
+
+      .footer-col-title {
+        font-family: var(--font-mono);
+        font-size: 0.8125rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--text-primary);
+        margin-bottom: 1.25rem;
+      }
+
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+
+      .footer-links a {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        transition: color 0.15s ease;
+      }
+
+      .footer-links a:hover {
+        color: var(--text-accent);
+      }
+
+      .footer-bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-subtle);
+        font-size: 0.85rem;
+        color: var(--text-muted);
+      }
+
+      @media (min-width: 640px) {
+        .footer-bottom {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      .footer-astro-link {
+        color: var(--text-accent);
+        font-weight: 600;
+      }
+
+      .mono-dim {
+        font-family: var(--font-mono);
+        font-size: 0.8rem;
+        opacity: 0.8;
+      }
+    </style>
+  </body>
+</html>
