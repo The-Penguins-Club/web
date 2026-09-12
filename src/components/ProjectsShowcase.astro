@@ -1,0 +1,311 @@
+---
+// Projects Showcase - Fostering Open Source Projects & Incubation
+const projects = [
+  {
+    id: "proj-pingu",
+    name: "pingu-pkg",
+    description: "A blazingly fast, declarative dotfiles & system package orchestrator built for modern Linux distros with atomic rollbacks.",
+    stars: "1.4k",
+    forks: "180",
+    lang: "Rust",
+    langColor: "#f97316",
+    license: "GPL-3.0",
+    stage: "Active Maintainer",
+    repoUrl: "https://github.com"
+  },
+  {
+    id: "proj-kernelcraft",
+    name: "kernel-craft",
+    description: "Interactive browser-based interactive lab visualizing Linux kernel memory management, CFS scheduler queues, and system call execution.",
+    stars: "2.8k",
+    forks: "310",
+    lang: "C / Wasm",
+    langColor: "#38bdf8",
+    license: "MIT",
+    stage: "Graduated Project",
+    repoUrl: "https://github.com"
+  },
+  {
+    id: "proj-fossshield",
+    name: "foss-shield",
+    description: "Zero-telemetry local DNS blocker and privacy enforcement daemon designed to audit background tracker traffic across Linux workstations.",
+    stars: "940",
+    forks: "84",
+    lang: "Go",
+    langColor: "#00add8",
+    license: "AGPL-3.0",
+    stage: "Incubating",
+    repoUrl: "https://github.com"
+  },
+  {
+    id: "proj-term",
+    name: "peng-terminal",
+    description: "Ultra-lean, Wayland-native GPU terminal emulator focusing on minimal latency, ligatures, and zero bloat.",
+    stars: "1.1k",
+    forks: "112",
+    lang: "Zig",
+    langColor: "#ec4899",
+    license: "Apache-2.0",
+    stage: "Incubating",
+    repoUrl: "https://github.com"
+  }
+];
+---
+
+<section id="projects" class="projects-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-tag">Fostering Open Source</div>
+      <h2 class="section-title">Incubated Community Projects</h2>
+      <p class="section-desc">
+        We turn weekend ideas into durable, production-ready Free Software. Through code reviews, infrastructure grants, and maintainer pairing, here are a few tools incubated under our wings.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      {projects.map((proj) => (
+        <div class="project-card glass-card">
+          <div class="proj-header">
+            <div class="proj-title-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="folder-icon">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <h3 class="proj-name">{proj.name}</h3>
+            </div>
+            <span class="proj-stage-badge">{proj.stage}</span>
+          </div>
+
+          <p class="proj-desc">{proj.description}</p>
+
+          <div class="proj-meta">
+            <div class="lang-indicator">
+              <span class="lang-dot" style={`background-color: ${proj.langColor}`}></span>
+              <span class="lang-name">{proj.lang}</span>
+            </div>
+
+            <div class="proj-stats">
+              <span class="stat-item" title="GitHub Stars">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                {proj.stars}
+              </span>
+              <span class="stat-item" title="Forks">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="18" r="3"></circle>
+                  <circle cx="6" cy="6" r="3"></circle>
+                  <circle cx="18" cy="6" r="3"></circle>
+                  <path d="M18 9v1a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2V9"></path>
+                  <path d="M12 12v3"></path>
+                </svg>
+                {proj.forks}
+              </span>
+              <span class="license-pill">{proj.license}</span>
+            </div>
+          </div>
+
+          <div class="proj-footer">
+            <a href={proj.repoUrl} target="_blank" rel="noopener" class="btn-secondary proj-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              Contribute &amp; Fork
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Incubator CTA Banner -->
+    <div class="incubator-banner glass-card">
+      <div class="banner-left">
+        <span class="mono-accent">// tpc-incubator --apply</span>
+        <h3 class="banner-title">Have a Linux / FOSS project idea?</h3>
+        <p class="banner-desc">
+          We provide free CI/CD compute runners, expert maintainer code review, packaging support for Arch AUR / Debian / Nix, and visibility across our 1,800+ developer community.
+        </p>
+      </div>
+      <div class="banner-right">
+        <a href="#community" class="btn-primary">
+          Submit Project for Mentorship
+          <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects-section {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+    position: relative;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (min-width: 768px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .project-card {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.25rem;
+  }
+
+  .proj-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .proj-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .folder-icon {
+    color: var(--text-accent);
+  }
+
+  .proj-name {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .proj-stage-badge {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    color: var(--text-accent-secondary);
+    background: var(--badge-bg);
+    border: 1px solid var(--badge-border);
+    padding: 0.2rem 0.55rem;
+    border-radius: 9999px;
+  }
+
+  .proj-desc {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .proj-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .lang-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--text-primary);
+  }
+
+  .lang-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  .proj-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  .stat-item {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    color: var(--text-muted);
+  }
+
+  .stat-item svg {
+    color: var(--accent-yellow);
+  }
+
+  .license-pill {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: var(--bg-subtle);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .proj-footer {
+    padding-top: 0.25rem;
+  }
+
+  .proj-btn {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 0.6rem 1rem;
+  }
+
+  /* Banner */
+  .incubator-banner {
+    padding: 2.25rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    border: 1px solid var(--border-glow);
+    background: linear-gradient(135deg, rgba(14, 20, 29, 0.95) 0%, rgba(17, 24, 39, 0.8) 100%);
+  }
+
+  [data-theme="light"] .incubator-banner {
+    background: linear-gradient(135deg, rgba(241, 245, 249, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+  }
+
+  @media (min-width: 860px) {
+    .incubator-banner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .banner-left {
+      max-width: 620px;
+    }
+  }
+
+  .banner-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0.35rem 0 0.6rem;
+  }
+
+  .banner-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .incubator-banner:hover .arrow {
+    transform: translateX(4px);
+  }
+</style>
