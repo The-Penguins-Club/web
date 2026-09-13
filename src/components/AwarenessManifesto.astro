@@ -1,0 +1,303 @@
+---
+// Linux and FOSS Awareness & Digital Sovereignty Section
+const freedoms = [
+  {
+    num: "00",
+    title: "Freedom to Run",
+    desc: "The freedom to run the program as you wish, for any purpose, on any machine without proprietary licensing limits or user telemetry."
+  },
+  {
+    num: "01",
+    title: "Freedom to Study",
+    desc: "The freedom to inspect how the program works and adapt it to your exact needs. Transparent source code is a fundamental prerequisite."
+  },
+  {
+    num: "02",
+    title: "Freedom to Share",
+    desc: "The freedom to redistribute copies so you can help your neighbour, your university peers, and your community without artificial scarcity."
+  },
+  {
+    num: "03",
+    title: "Freedom to Improve",
+    desc: "The freedom to distribute copies of your modified versions to others, giving the entire open source community a chance to benefit from your work."
+  }
+];
+
+const pillars = [
+  {
+    icon: "🛡️",
+    title: "Data Sovereignty",
+    summary: "Your computer should belong to you. No background telemetry, no forced cloud accounts, and no monetization of your personal data."
+  },
+  {
+    icon: "⚡",
+    title: "Hardware Longevity",
+    summary: "Linux runs effortlessly on lightweight hardware. By refusing planned obsolescence, we save millions of computers from e-waste."
+  },
+  {
+    icon: "🔍",
+    title: "Auditable Transparency",
+    summary: "When software is open source, cryptographic signatures and reproducible builds ensure that what runs is exactly what was verified."
+  },
+  {
+    icon: "🌱",
+    title: "Collaborative Commons",
+    summary: "The greatest engineering feats in modern computing—the Linux kernel, Git, the World Wide Web—thrived as shared public commons."
+  }
+];
+---
+
+<section id="manifesto" class="manifesto-section">
+  <div class="container">
+    <div class="manifesto-grid">
+      <!-- Left side: Awareness & Mission -->
+      <div class="manifesto-text-col">
+        <div class="section-tag">Linux &amp; FOSS Awareness</div>
+        <h2 class="section-title">Software Freedom Is a Human Right</h2>
+        <p class="section-desc">
+          In an era dominated by walled gardens, pervasive tracking, and remote kill-switches, The Penguins Club champions computing sovereignty. We educate students, developers, and everyday citizens on the power of GNU/Linux and Free Software.
+        </p>
+
+        <!-- Pillars grid -->
+        <div class="awareness-pillars">
+          {pillars.map((item) => (
+            <div class="pillar-item glass-card">
+              <span class="pillar-icon">{item.icon}</span>
+              <div class="pillar-content">
+                <h4 class="pillar-title">{item.title}</h4>
+                <p class="pillar-summary">{item.summary}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right side: The 4 Freedoms Card -->
+      <div class="freedoms-wrapper">
+        <div class="freedoms-card glass-card">
+          <div class="card-terminal-header">
+            <div class="dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <span class="term-file">gnu-philosophy.c</span>
+            <span class="term-flag">[FOSS-CANON]</span>
+          </div>
+
+          <div class="freedoms-body">
+            <div class="freedoms-intro">
+              <span class="code-comment">/* The Four Essential Freedoms defined by Richard M. Stallman &amp; the FSF */</span>
+            </div>
+
+            <div class="freedoms-list">
+              {freedoms.map((f) => (
+                <div class="freedom-row">
+                  <div class="freedom-num-badge">
+                    <code>freedom[{f.num}]</code>
+                  </div>
+                  <div class="freedom-details">
+                    <h4 class="freedom-title">{f.title}</h4>
+                    <p class="freedom-desc">{f.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="quote-box">
+              <p class="quote-text">
+                &ldquo;If you want to go fast, go alone. If you want to build durable digital infrastructure for humankind, go Open Source.&rdquo;
+              </p>
+              <span class="quote-author">&mdash; The Penguins Club Manifesto</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .manifesto-section {
+    padding: clamp(4rem, 8vw, 7rem) 0;
+    position: relative;
+  }
+
+  .manifesto-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .manifesto-grid {
+      grid-template-columns: 1.1fr 1fr;
+    }
+  }
+
+  .manifesto-text-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .awareness-pillars {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  @media (min-width: 600px) {
+    .awareness-pillars {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .pillar-item {
+    padding: 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+  }
+
+  .pillar-icon {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .pillar-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+  }
+
+  .pillar-summary {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Freedoms Card */
+  .freedoms-card {
+    background: var(--bg-terminal);
+    border: 1px solid var(--border-card);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-md), 0 0 35px -8px rgba(52, 211, 153, 0.2);
+  }
+
+  .card-terminal-header {
+    background: #111827;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0.65rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  .dots {
+    display: flex;
+    gap: 5px;
+  }
+
+  .dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+  }
+
+  .dot.red { background: #ef4444; }
+  .dot.yellow { background: #f59e0b; }
+  .dot.green { background: #10b981; }
+
+  .term-file {
+    color: #94a3b8;
+  }
+
+  .term-flag {
+    color: #34d399;
+    font-size: 0.7rem;
+  }
+
+  .freedoms-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: #090d12;
+  }
+
+  .code-comment {
+    font-family: var(--font-mono);
+    font-size: 0.775rem;
+    color: #64748b;
+  }
+
+  .freedoms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .freedom-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  @media (min-width: 480px) {
+    .freedom-row {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+
+  .freedom-num-badge code {
+    font-size: 0.75rem;
+    color: var(--accent-cyan);
+    background: rgba(56, 189, 248, 0.1);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    white-space: nowrap;
+  }
+
+  .freedom-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #f1f5f9;
+  }
+
+  .freedom-desc {
+    font-size: 0.85rem;
+    color: #94a3b8;
+    line-height: 1.5;
+  }
+
+  .quote-box {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    font-style: italic;
+  }
+
+  .quote-text {
+    font-size: 0.85rem;
+    color: #e2e8f0;
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+  }
+
+  .quote-author {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-yellow);
+    font-style: normal;
+  }
+</style>
